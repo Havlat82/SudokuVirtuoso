@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework48WinFormAppTemplate.Core", "source\Framework48WinFormAppTemplate.Core\Framework48WinFormAppTemplate.Core.csproj", "{E6F974CE-0641-4DA9-9EE6-F561D1C4A58F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuVirtuoso.Core", "source\SudokuVirtuoso.Core\SudokuVirtuoso.Core.csproj", "{E6F974CE-0641-4DA9-9EE6-F561D1C4A58F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework48WinFormAppTemplate.Core.Tests", "tests\Framework48WinFormAppTemplate.Core.Tests\Framework48WinFormAppTemplate.Core.Tests.csproj", "{CF28A9F2-BCDE-4399-AC44-8A7587A94A39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuVirtuoso.Core.Tests", "tests\SudokuVirtuoso.Core.Tests\SudokuVirtuoso.Core.Tests.csproj", "{CF28A9F2-BCDE-4399-AC44-8A7587A94A39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework48WinFormAppTemplate.WinFormsUI", "source\Framework48WinFormAppTemplate.WinFormsUI\Framework48WinFormAppTemplate.WinFormsUI.csproj", "{F29F4800-24B7-42CF-9A66-9EE6679B49F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuVirtuoso.WinFormsUI", "source\SudokuVirtuoso.WinFormsUI\SudokuVirtuoso.WinFormsUI.csproj", "{F29F4800-24B7-42CF-9A66-9EE6679B49F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

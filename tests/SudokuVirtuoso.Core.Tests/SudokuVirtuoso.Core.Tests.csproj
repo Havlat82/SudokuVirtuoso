@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\source\Framework48WinFormAppTemplate.Core\Framework48WinFormAppTemplate.Core.csproj" />
+    <ProjectReference Include="..\..\source\SudokuVirtuoso.Core\SudokuVirtuoso.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

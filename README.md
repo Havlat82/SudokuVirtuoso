@@ -1,2 +1,3 @@
-# RepositoryTemplate01
-První šablona na repozitář. 15/09/2024
+# SudokuVirtuoso
+Aplikace která umí vytvořit náhodný klasický 9x9 sudoku a vyřešit ho.
+uživatel může ukládat a nahrávat stav řešení do souboru.

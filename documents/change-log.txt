@@ -1,1 +1,17 @@
+0001 ZMĚNA Přeměna šablony na SudokuVirtuoso
 
+done: 
+- nastavení projektu po spuštění
+
+- přejmenovat projekty, složky projektů, název sestavení, text v MainForm.cs
+
+- zkontrolovat namespaces a další vlastnosti csproj a sln souborů 
+pomocí editoru zkouknout cesty
+
+- aktualizovat dotnet-desktop.yml script
+
+- aktualizovat readme.md
+
+- kontrolní solution build & run
+
+==================================================================
