@@ -11,7 +11,7 @@ namespace SudokuVirtuoso.Core
             throw new NotImplementedException();
         }
 
-        public bool SolvePuzzle(int[,] sudokduGrid)
+        public bool SolvePuzzle(int[,] sudokuGrid)
         {
             throw new NotImplementedException();
         }

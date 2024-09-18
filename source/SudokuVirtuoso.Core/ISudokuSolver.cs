@@ -6,7 +6,7 @@ namespace SudokuVirtuoso.Core
 {
     public interface ISudokuSolver
     {
-        bool SolvePuzzle(int[,] sudokduGrid);
+        bool SolvePuzzle(int[,] sudokuGrid);
         int[,] GeneratePuzzle();        
     }
 }
