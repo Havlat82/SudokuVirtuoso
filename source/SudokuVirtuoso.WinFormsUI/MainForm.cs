@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuVirtuoso.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,17 @@ namespace SudokuVirtuoso.WinFormsUI
 {
     public partial class MainForm : Form
     {
+        ISudokuSolver _sudokuSolver;
+
         public MainForm()
         {
             InitializeComponent();
+            InitPuzzle();
+        }
+
+        private void InitPuzzle()
+        {
+            _sudokuSolver = new SudokuSolver();
         }
     }
 }

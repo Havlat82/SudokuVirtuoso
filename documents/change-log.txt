@@ -1,17 +1,22 @@
-0001 ZMĚNA Přeměna šablony na SudokuVirtuoso
+0001: #Přeměna šablony na SudokuVirtuoso
 
-done: 
 - nastavení projektu po spuštění
-
 - přejmenovat projekty, složky projektů, název sestavení, text v MainForm.cs
-
 - zkontrolovat namespaces a další vlastnosti csproj a sln souborů 
 pomocí editoru zkouknout cesty
-
 - aktualizovat dotnet-desktop.yml script
-
 - aktualizovat readme.md
-
 - kontrolní solution build & run
 
 ==================================================================
+
+0002: #Přidání SudokuSolver 
+
+- přidáno rozhraní ISudokuSolver, definuje methody GeneratePuzzle a SolvePuzzle 
+- přidaná třída SudokuSolver, která implementuje ISudokuSolver
+- přidaný základní testy pro methodu SudokuSolver.SolvePuzzle
+- přidaný privatní pole ISudokuSolver _sudokuSolver do MainForm.cs v WinFormsUI projektu
+- instanciace privatního pole v metodě InitPuzzle, která je volaná v konstruktoru MainForm.cs
+- aktualizace dotnet-desktop.yml skriptu, aby spouštěl testy.
+
+Testy budou padat z důvodu NotImplementedException v metodě SudokuSolver.SolvePuzzle
