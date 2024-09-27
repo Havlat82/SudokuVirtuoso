@@ -20,3 +20,38 @@ pomocí editoru zkouknout cesty
 - aktualizace dotnet-desktop.yml skriptu, aby spouštěl testy.
 
 Testy budou padat z důvodu NotImplementedException v metodě SudokuSolver.SolvePuzzle
+
+==================================================================
+
+0003: #Změna CI skriptu  
+
+- aktualizace dotnet-desktop.yml skriptu, aby NEspouštěl testy.
+
+Změnil jsem názor. Testy aktivuju, až budou implementovaný.
+
+==================================================================
+
+0004: #Přidání Sandbox Console Projectu
+
+- Přidání projektu SudokuVirtuoso.Sandbox.ConsoleUI. Projekt je čistě pro experimenty 
+  a pak bude smazán. Třídy a metody v něm pak přenesu do SudokuVirtuoso.Core nebo 
+  do mé sokromé knihovny (HavlatLibrary / BoogabooLibrary), která bude Nuget package.
+
+==================================================================
+
+0005: #Přidání experimentálních tříd
+
+Přidal jsem do projektu SudokuVirtuoso.Sandbox.ConsoleUI několik experimentálních tříd.
+
+- Vytvořil jsem v projektu složku DancingLinks, která obsahuje třídy které implementují
+algoritmus DancingLinks jehož autorem je Donald Knuth. Bohužel je tam chyba. 
+Pravděpodobně v rekurzi.
+
+- Přidána statická třída SudokuHelper, která obsahuje metodu PrintGrid, 
+která vypíše sudoku mřížku do konzole.
+
+- Přidána třída Position. Drží data o pozici na sudoku mřížce. 
+Potřebuje refaktorovat, ve finální podobě to bude struct.
+
+- Přidány třídy PuzzleSettings a Rules, obě v podstatě dělají to samé, 
+drží základní pravidla sudoku. Zeptat se AI, který způsob je lepší. 

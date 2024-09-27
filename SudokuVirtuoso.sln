@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuVirtuoso.Core.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuVirtuoso.WinFormsUI", "source\SudokuVirtuoso.WinFormsUI\SudokuVirtuoso.WinFormsUI.csproj", "{F29F4800-24B7-42CF-9A66-9EE6679B49F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuVirtuoso.Sandbox.Console", "source\SudokuVirtuoso.Sandbox.Console\SudokuVirtuoso.Sandbox.Console.csproj", "{2BC9309A-0706-430F-B7AF-C2B557AF7883}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuVirtuoso.Sandbox.ConsoleUI", "source\SudokuVirtuoso.Sandbox.Console\SudokuVirtuoso.Sandbox.ConsoleUI.csproj", "{2BC9309A-0706-430F-B7AF-C2B557AF7883}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
