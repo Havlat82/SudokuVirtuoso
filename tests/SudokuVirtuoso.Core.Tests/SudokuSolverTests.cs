@@ -10,7 +10,7 @@ namespace SudokuVirtuoso.Core.Tests
         [SetUp]
         public void Setup()
         {
-            _solver = new SudokuSolver();
+            //_solver = new OriginalSolver();
         }
 
         [Test]

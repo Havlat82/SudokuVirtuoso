@@ -55,3 +55,21 @@ Potřebuje refaktorovat, ve finální podobě to bude struct.
 
 - Přidány třídy PuzzleSettings a Rules, obě v podstatě dělají to samé, 
 drží základní pravidla sudoku. Zeptat se AI, který způsob je lepší. 
+
+==================================================================
+
+0006: #Přidání experimentálních tříd
+
+Modified : SudokuVirtuoso.sln
+Added : source/SudokuVirtuoso.Core/GridValidator.cs
+Added : source/SudokuVirtuoso.Core/OriginalSolver.cs
+Added : source/SudokuVirtuoso.Core/Rules.cs
+Modified : source/SudokuVirtuoso.Core/SudokuSolver.cs
+Added : source/SudokuVirtuoso.Sandbox.ConsoleUI/IntWrapper.cs
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/Program.cs
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/Rules.cs
+Added : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuGrid.cs
+Added : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuGridObsolote.cs
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuVirtuoso.Sandbox.ConsoleUI.csproj
+Added : source/SudokuVirtuoso.Sandbox.ConsoleUI/packages.config
+Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs

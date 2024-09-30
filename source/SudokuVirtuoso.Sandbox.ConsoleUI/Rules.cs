@@ -10,6 +10,7 @@ namespace SudokuVirtuoso.Sandbox.ConsoleUI
     {
         public const int MINIMAL_CLUES_COUNT = 17;
         public const int EMPTY_CELL_VALUE = 0;
+        public const int MAX_VALUE = 9;
 
         public int GridSize { get; }
         public int BoxSize { get; }
@@ -28,6 +29,7 @@ namespace SudokuVirtuoso.Sandbox.ConsoleUI
         public static Rules Create(string name)
         {
             var validValues = Enumerable.Range(1, 9).ToList();
+            var max = validValues.Max();
             
             switch (name)
             {
