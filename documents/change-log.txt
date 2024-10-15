@@ -78,3 +78,23 @@ Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs
 
 0007: #Implementace SolveSudoku
 
+11 files modified and 2 files added and 4 files deleted
+
+Modified : .github/workflows/dotnet-desktop.yml
+Modified : documents/change-log.txt
+Modified : source/SudokuVirtuoso.Core/ISudokuSolver.cs
+Added : source/SudokuVirtuoso.Core/ModifiedSolver.cs
+Added : source/SudokuVirtuoso.Core/ModifiedSolver2.cs
+Deleted : source/SudokuVirtuoso.Core/OriginalSolver.cs
+Modified : source/SudokuVirtuoso.Core/Rules.cs
+Modified : source/SudokuVirtuoso.Core/SudokuSolver.cs
+Deleted : source/SudokuVirtuoso.Sandbox.ConsoleUI/IntWrapper.cs
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/Program.cs
+Deleted : source/SudokuVirtuoso.Sandbox.ConsoleUI/PuzzleSettings.cs
+Deleted : source/SudokuVirtuoso.Sandbox.ConsoleUI/Rules.cs
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuGrid.cs
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuVirtuoso.Sandbox.ConsoleUI.csproj
+Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/packages.config
+Modified : source/SudokuVirtuoso.WinFormsUI/MainForm.cs
+Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs
+
