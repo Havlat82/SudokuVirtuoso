@@ -73,3 +73,8 @@ Added : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuGridObsolote.cs
 Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/SudokuVirtuoso.Sandbox.ConsoleUI.csproj
 Added : source/SudokuVirtuoso.Sandbox.ConsoleUI/packages.config
 Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs
+
+==================================================================
+
+0007: #Implementace SolveSudoku
+

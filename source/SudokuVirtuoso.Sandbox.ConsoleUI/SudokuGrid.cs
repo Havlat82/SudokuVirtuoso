@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuVirtuoso.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,14 +11,6 @@ namespace SudokuVirtuoso.Sandbox.ConsoleUI
 {
     public class SudokuGrid
     {
-        //public const int GRID_SIZE = 9;
-        //public const int SUBGRID_SIZE = 3;
-        //public const int MIN_VALUE = 1;
-        //public const int MAX_VALUE = 9;
-        //public const int EMPTY_CELL = 0;
-
-        //private int[,] _sheet;
-
         private HashSet<int>[] _rowValues;
         private HashSet<int>[] _columnValues;
         private HashSet<int>[] _squareValues;
@@ -28,9 +21,7 @@ namespace SudokuVirtuoso.Sandbox.ConsoleUI
         public SudokuGrid(Rules rules)
         {
             _rules = rules;
-            //_sheet = new int[_rules.GridSize, _rules.GridSize];
-            CreateValueSets();
-            //_hiddenCells = new HashSet<Position>();
+            CreateValueSets();            
         }
 
         public int[,] CreateGridWithValidValues()
@@ -42,11 +33,31 @@ namespace SudokuVirtuoso.Sandbox.ConsoleUI
             return grid;
         }
 
-        public int[,] SolveGrid(int[,] grid)
+        public bool SolveGrid(int[,] grid)
         {
-            FillGrid(grid);
+            if (AreErrorsInGrid(grid)) 
+                return false; 
 
-            return grid;
+            return SolveSudoku(grid);
+        }
+
+        private bool AreErrorsInGrid(int[,] grid)
+        {
+            for (var row = 0; row < _rules.GridSize; row++)
+                for (var col = 0; col < _rules.GridSize; col++)
+                    if (grid[row, col] != Rules.EMPTY_CELL_VALUE)
+                    {
+                        var sgi = ((row / 3) * 3) + (col / 3);
+                        var value = grid[row, col];
+
+                        if (IsValueInPosition(value, row, col, sgi))
+                            return true;
+                        else
+                            AddValueInPositionToValueSets(row, col, sgi, value);
+
+                    }
+
+            return false;
         }
 
         private void CreateValueSets()
@@ -117,6 +128,52 @@ namespace SudokuVirtuoso.Sandbox.ConsoleUI
             _rowValues[row].Add(value);
             _columnValues[col].Add(value);
             _squareValues[sgi].Add(value);
+        }
+
+        public bool SolveSudoku(int[,] grid)
+        {
+            var min = _rules.ValidValues.Min();
+            var max = _rules.ValidValues.Max();
+
+            for (var row = 0; row < _rules.GridSize; row++)
+                for (var col = 0; col < _rules.GridSize; col++)
+                {
+                    if (grid[row, col] == Rules.EMPTY_CELL_VALUE)
+                    {
+                        for (var value = min; value <= max; value++)
+                        {
+                            if (ValueCouldBeWritten(grid, row, col, value))
+                            {
+                                grid[row, col] = value;
+                                if (SolveSudoku(grid))
+                                    return true;
+
+                                grid[row, col] = Rules.EMPTY_CELL_VALUE;
+                            }
+                        }
+                        return false;
+                    }
+                }
+
+            return true;
+        }
+
+        private bool ValueCouldBeWritten(int[,] grid, int row, int col, int value)
+        {
+            for (var i = 0; i < _rules.GridSize; i++)
+            {
+                var squareRow = row - (row % 3) + (i / 3);
+                var squareCol = col - (col % 3) + (i % 3);
+
+                var isValueInRow = grid[row, i] == value;
+                var isValueInColumn = grid[i, col] == value;
+                var isValueInSquare = grid[squareRow, squareCol] == value;
+
+                if (isValueInRow || isValueInColumn || isValueInSquare)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

@@ -10,7 +10,8 @@ namespace SudokuVirtuoso.Core.Tests
         [SetUp]
         public void Setup()
         {
-            //_solver = new OriginalSolver();
+            var rules = Rules.Create("Classic9x9Easy");
+            _solver = new ModifiedSolver(rules);
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace SudokuVirtuoso.Core.Tests
             bool solved = _solver.SolvePuzzle(puzzle);
 
             // Assert
-            Assert.IsTrue(solved);
+            Assert.That(true, Is.EqualTo(solved));
             // Add more specific assertions to check if the solution is correct
         }
 
@@ -57,7 +58,7 @@ namespace SudokuVirtuoso.Core.Tests
             bool solved = _solver.SolvePuzzle(invalidPuzzle);
 
             // Assert
-            Assert.IsFalse(solved);
+            Assert.That(false, Is.EqualTo(solved));
         }
     }
 }
