@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SudokuVirtuoso.Sandbox.ConsoleUI
+namespace SudokuVirtuoso.ConsoleUI
 {
     public class Program
     {

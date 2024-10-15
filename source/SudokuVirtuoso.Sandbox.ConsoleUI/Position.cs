@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SudokuVirtuoso.Sandbox.ConsoleUI
+namespace SudokuVirtuoso.ConsoleUI
 {
     /// <summary>
     /// Holds data about a Sudoku position
