@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SudokuVirtuoso.Core;
+﻿using SudokuVirtuoso.Core;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;

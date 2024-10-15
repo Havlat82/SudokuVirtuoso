@@ -98,3 +98,9 @@ Modified : source/SudokuVirtuoso.Sandbox.ConsoleUI/packages.config
 Modified : source/SudokuVirtuoso.WinFormsUI/MainForm.cs
 Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs
 
+==================================================================
+
+0008: #Rozhodnutí, která verze SudokuSolver je lepší 
+
+
+
