@@ -14,21 +14,22 @@ namespace SudokuVirtuoso.Core
 
         private static bool HasValidDimensions(int[,] grid, Rules rules)
         {
-            return grid != null
+            return grid != null // object exists & it is 2D array with valid dimensions
                 && grid.GetLength(0) == rules.GridSize
                 && grid.GetLength(1) == rules.GridSize;
         }
 
         private static bool HasValidValues(int[,] grid, Rules rules)
         {
+            return grid.Cast<int>().All(cellValue => IsValidValue(cellValue, rules));
+        }
+
+        private static bool IsValidValue(int value, Rules rules)
+        {
             var min = rules.ValidValues.Min();
             var max = rules.ValidValues.Max();
 
-            var result = grid.Cast<int>()
-                             .All(cellValue => cellValue == Rules.EMPTY_CELL_VALUE
-                                                         || (cellValue >= min && cellValue <= max));
-
-            return result;
+            return value == Rules.EMPTY_CELL_VALUE || (value >= min && value <= max);
         }
     }
 }
