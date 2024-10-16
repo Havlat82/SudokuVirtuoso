@@ -102,5 +102,5 @@ Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs
 
 0008: #Rozhodnutí, která verze SudokuSolver je lepší 
 
-
+zůstáva ModifiedSolver2 jako BacktrackingSolver
 

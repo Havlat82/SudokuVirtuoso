@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chaos\ModifiedSolver.cs" />
     <Compile Include="DancingLinks\DancingLinksExample.cs" />
     <Compile Include="DancingLinks\SudokuDLX.cs" />
     <Compile Include="Position.cs" />

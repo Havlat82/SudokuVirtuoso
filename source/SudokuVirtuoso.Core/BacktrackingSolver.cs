@@ -4,14 +4,14 @@ using System.Text;
 
 namespace SudokuVirtuoso.Core
 {
-    public class ModifiedSolver2 : SudokuSolver
+    public class BacktrackingSolver : SudokuSolver
     {
         // možná je dám do samostatný třídy
         private HashSet<int>[] _rowValues;
         private HashSet<int>[] _columnValues;
         private HashSet<int>[] _squareValues;
 
-        public ModifiedSolver2(Rules rules) : base(rules)
+        public BacktrackingSolver(Rules rules) : base(rules)
         {
             CreateValueSets();
         }

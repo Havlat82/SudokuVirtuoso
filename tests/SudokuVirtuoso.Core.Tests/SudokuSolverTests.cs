@@ -11,7 +11,7 @@ namespace SudokuVirtuoso.Core.Tests
         public void Setup()
         {
             var rules = Rules.Create("Classic9x9Easy");
-            _solver = new ModifiedSolver(rules);
+            _solver = new BacktrackingSolver(rules);
         }
 
         [Test]
