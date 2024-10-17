@@ -27,50 +27,7 @@ namespace SudokuVirtuoso.Core
         /// <returns>A read-only set of valid values.</returns>
         public HashSet<int> Get() => _values;
 
-        #region Random
-
-        /*
-         * pravděpodobně dám do samostatný třídy
-         */
-
-        /// <summary>
-        /// Gets a new HashSet with the valid values in random order.
-        /// </summary>
-        /// <returns>A new HashSet with randomized valid values.</returns>
-        public HashSet<int> GetRandom()
-        {
-            // Create a new array to avoid modifying the original set
-            var valueArray = _values.ToArray();
-
-            // Use a cryptographically secure random number generator for better randomness
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                // Implement Fisher-Yates shuffle
-                for (var valueIndex = valueArray.Length - 1; valueIndex > 0; valueIndex--)
-                {
-                    var randomIndex = GetRandomIndexInArray(rng, new byte[4], valueIndex);
-                    SwapValuesInArray(valueArray, valueIndex, randomIndex);
-                }
-            }
-
-            // Return a new HashSet to maintain immutability of the original set
-            return new HashSet<int>(valueArray);
-        }
-
-        private int GetRandomIndexInArray(RNGCryptoServiceProvider random, byte[] randomBytes, int index)
-        {
-            random.GetBytes(randomBytes);
-            return BitConverter.ToInt32(randomBytes, 0) % (index + 1);
-        }
-
-        private void SwapValuesInArray(int[] intArray, int index1, int index2)
-        {
-            int temp = intArray[index1];
-            intArray[index1] = intArray[index2];
-            intArray[index2] = temp;
-        }
-
-        #endregion Random
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidValues"/> class.

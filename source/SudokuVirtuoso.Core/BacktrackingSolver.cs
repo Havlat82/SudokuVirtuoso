@@ -66,8 +66,8 @@ namespace SudokuVirtuoso.Core
                     {
                         var sgi = ((row / _rules.SquareSize) * _rules.SquareSize) + (col / _rules.SquareSize);
                         
-                        if (newPuzzle) // pravděpodobně budu refaktorovat
-                            numbers = _rules.ValidValues.GetRandom();
+                        if (newPuzzle) // pravděpodobně změnim název
+                            numbers = ValueShuffler.Shuffle(numbers);
 
                         foreach (var value in numbers)
                         {

@@ -233,3 +233,15 @@ Refactor ValidValues class for improved efficiency and security
 - Incorporate validation logic into constructor
 - Rename AsReadOnly method to Get for clarity
   
+  ==================================================================
+
+0010: #Přidání třídy ValueShuffler zapouzdřuje náhodný čísla 
+a náhodné míchání hodnot při generování nového sudoku
+Pokračování v čištění / Refactorizaci třídy ValidValues
+
+- Přesun relevantního kódu z třídy ValidValues do nové třídy 
+ValueShuffler
+- Update volání metody ve třídě BacktrackingSolver ( metoda FillGrid )
+
+- Create ValueShuffler for secure random value shuffling
+- Add XML documentation to ValueShuffler class for better code clarity
