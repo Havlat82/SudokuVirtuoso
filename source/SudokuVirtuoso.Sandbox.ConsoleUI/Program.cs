@@ -12,9 +12,9 @@ namespace SudokuVirtuoso.ConsoleUI
     {
         private static void Main(string[] args)
         {
-            var rules = Rules.Create("Classic9x9Easy");
+            var rules = Rules.Create("Classic9x9Easy", new ValidValues(1, 9));
 
-            var solver = new ModifiedSolver(rules);
+            var solver = new BacktrackingSolver(rules);
 
             int[,] puzzle = {
                 {5,3,0,0,7,0,0,0,0},
