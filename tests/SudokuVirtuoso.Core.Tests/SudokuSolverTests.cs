@@ -10,7 +10,8 @@ namespace SudokuVirtuoso.Core.Tests
         [SetUp]
         public void Setup()
         {
-            var rules = Rules.Create("Classic9x9Easy");
+            var validValues = new ValidValues(1, 9);
+            var rules = Rules.Create("Classic9x9Easy", validValues);
             _solver = new BacktrackingSolver(rules);
         }
 

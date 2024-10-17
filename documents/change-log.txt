@@ -104,3 +104,132 @@ Modified : tests/SudokuVirtuoso.Core.Tests/SudokuSolverTests.cs
 
 zůstáva ModifiedSolver2 jako BacktrackingSolver
 
+je to lepší verze, protože je výkonější a víc čitelná
+
+==================================================================
+
+0009: #Změny v Rules 
+
+- Změna ze struct na třídu 
+zůstáva ModifiedSolver2 jako BacktrackingSolver
+- Update refererencí
+- Zapouzdření predikátu do samostané metody v metodě HasValidValues 
+v třídě GridValidator
+- Přidání třídy ValidValues, zapouzdřuje platné hodnoty v řídě Rules
+- Update refererencí
+
+// Dodělat dokumentaci, zkontrolovat jestli je správně seřazená podle stylukopu,
+        // jak třídů optimalizovat po stránce udržitelnosti, čitelnosti, testovatelnosti a efektivity kódu
+       
+        
+        
+
+you are an expert c# developer. 
+can you make codereview of this code?
+you MUST use .NET Standard 2.0
+How would you improve it? Are there code, that you would remove?
+ Keep in mind best practices, 
+readability, security, maintainability, and code efficiency.
+
+can you make xml comments documenting class
+
+isn't the public int Count property redundant?
+I will probably only use it when checking validity. 
+does this method even make sense? 
+public static bool AreValid(ValidValues ​​validValues)
+How would you improve it? Keep in mind best practices, 
+readability, security, maintainability, and code efficiency.
+
+it is better to have a constant in the Rules class or 
+to have a public int property EmptyCellValue { get; } 
+in the ValidValues ​​class? Or it's best to combine it. 
+what implementation 
+is better in your point of you? explain why. be very detailed. 
+How would you improve it? Keep in mind best practices, 
+readability, security, maintainability, and code efficiency.
+
+As an expert C# developer, I believe the best approach is to have the EmptyCellValue as a constant in the Rules class. Here's why:
+
+Semantic meaning: The empty cell value is a fundamental rule of the Sudoku game, not a property of valid values. It belongs conceptually to the Rules class.
+
+Single source of truth: Having it in Rules ensures there's only one place to change this value if needed, improving maintainability.
+
+Accessibility: As a constant in Rules, it's easily accessible throughout the codebase without needing an instance of ValidValues.
+
+Performance: A constant is slightly more efficient than a property, as it's resolved at compile-time.
+
+Immutability: A constant guarantees immutability, which is appropriate for a game rule that should never change during runtime.
+
+To improve this implementation, I would:
+
+Use a readonly static field instead of a constant if we want to allow this value to be set once at runtime (e.g., for different Sudoku variants):
+public class Rules
+{
+    public static readonly int EmptyCellValue = 0;
+    // ... other members ...
+}
+
+Copy
+
+Apply
+
+Consider using an enum for special cell values:
+public enum CellValue
+{
+    Empty = 0,
+    // ... potentially other special values ...
+}
+
+public class Rules
+{
+    public static readonly CellValue EmptyCellValue = CellValue.Empty;
+    // ... other members ...
+}
+
+Copy
+
+Apply
+
+This approach improves type safety and readability.
+
+Add XML documentation to clearly explain the purpose and usage of EmptyCellValue:
+/// <summary>
+/// Represents an empty cell in the Sudoku grid.
+/// </summary>
+public static readonly CellValue EmptyCellValue = CellValue.Empty;
+
+Copy
+
+Apply
+
+If different Sudoku variants might use different empty cell values, we could make it an instance field of Rules, initialized in the constructor:
+public class Rules
+{
+    public CellValue EmptyCellValue { get; }
+
+    public Rules(CellValue emptyCellValue, /* other parameters */)
+    {
+        EmptyCellValue = emptyCellValue;
+        // ... initialize other fields ...
+    }
+}
+
+Copy
+
+Apply
+
+This approach maintains the semantic connection to Rules while allowing flexibility for different game variants.
+
+These improvements enhance readability, maintainability, and provide a clear, efficient way to represent and use the empty cell value throughout the Sudoku solver implementation.
+
+Refactor ValidValues class for improved efficiency and security
+
+- Implement IEquatable<ValidValues> for efficient comparisons
+- Use RNGCryptoServiceProvider for cryptographically secure randomization
+- Remove redundant Count property
+- Add XML documentation for better code clarity
+- Seal class to prevent unintended inheritance
+- Simplify Equals and GetHashCode methods
+- Incorporate validation logic into constructor
+- Rename AsReadOnly method to Get for clarity
+  

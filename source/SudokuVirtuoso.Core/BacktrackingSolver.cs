@@ -51,19 +51,23 @@ namespace SudokuVirtuoso.Core
         {
             var grid = new int[_rules.GridSize, _rules.GridSize];
 
-            _ = FillGrid(grid);
+            _ = FillGrid(grid, true);
 
             return grid;
         }
-        private bool FillGrid(int[,] grid)
+        private bool FillGrid(int[,] grid, bool newPuzzle = false)
         {
+            var numbers = _rules.ValidValues.Get();
+
             for (var row = 0; row < _rules.GridSize; row++)
                 for (var col = 0; col < _rules.GridSize; col++)
                 {
                     if (grid[row, col] == Rules.EMPTY_CELL_VALUE)
                     {
                         var sgi = ((row / _rules.SquareSize) * _rules.SquareSize) + (col / _rules.SquareSize);
-                        var numbers = _rules.ValidValues;//  todo randomizace .OrderBy(x => _random.Next()).ToList(); bude v SudokuHelper
+                        
+                        if (newPuzzle) // pravděpodobně budu refaktorovat
+                            numbers = _rules.ValidValues.GetRandom();
 
                         foreach (var value in numbers)
                         {
@@ -72,7 +76,7 @@ namespace SudokuVirtuoso.Core
                                 AddValueInPositionToValueSets(row, col, sgi, value);
                                 grid[row, col] = value;
 
-                                if (FillGrid(grid))
+                                if (FillGrid(grid, newPuzzle))
                                     return true;
 
                                 // If we couldn't complete the grid with this value, backtrack

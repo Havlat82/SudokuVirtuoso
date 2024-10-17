@@ -26,8 +26,8 @@ namespace SudokuVirtuoso.Core
 
         private static bool IsValidValue(int value, Rules rules)
         {
-            var min = rules.ValidValues.Min();
-            var max = rules.ValidValues.Max();
+            var min = rules.ValidValues.Min;
+            var max = rules.ValidValues.Max;
 
             return value == Rules.EMPTY_CELL_VALUE || (value >= min && value <= max);
         }

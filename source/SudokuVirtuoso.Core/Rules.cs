@@ -4,83 +4,70 @@ using System.Linq;
 
 namespace SudokuVirtuoso.Core
 {
-    // neni už lepší z toho udělat třídu?
-    public struct Rules
+    public class Rules
     {
         /// <summary>
-        /// Minimální počet nápověd / vyplněných polí mřížky, 
+        /// Minimální počet nápověd / vyplněných polí mřížky,
         /// aby bylo mělo sudoku právě jedno řešení a tím pádem šlo vyřešit
         /// </summary>
+        // možná budu měnit názvy
         public const int MINIMAL_CLUES_COUNT = 17;
+
         public const int EMPTY_CELL_VALUE = 0;
-        public const int ALLOWED_COUNT = 1;
-        
+        public const int ALLOWED_UNIQUE_VALUE_COUNT = 1;
+
+        // možná odeberu pokud nechám tak jen kvůli tomu, aby si člověk mohl udělat pravidla na míru
         public string Name { get; }
+
+        // kontrola validity při vytváření
+        // udělat public setter methdodu pro gettery
         public int GridSize { get; }
         public int SquareSize { get; }
 
         public int ClueCount { get; }
 
-        // možná to dám do samostatný třídy
-        public IEnumerable<int> ValidValues { get; }
+        public ValidValues ValidValues { get; }
 
-        public int MinValue => ValidValues.Min();
-
-        public int MaxValue => ValidValues.Max();
-
-        // chtěl bych to jako množinu, aby bylo jasný že každá hodnota je unikátní
-        
-
-        public Rules(string name, int gridSize, int clueCount, List<int> validValues)
+        // pokud zustane Name, tak se budu vytvářet z jiných vlastnosti
+        private Rules(string name, int gridSize, int clueCount, ValidValues validValues)
         {
             Name = name;
             GridSize = gridSize;
             SquareSize = (int)Math.Sqrt(gridSize);
-            ClueCount = clueCount;
+            ClueCount = SetValidClueCount(clueCount);
             ValidValues = validValues;
         }
 
-        // která je lepší?
-        private int SetValidClueCount_Defensive(int value) 
-        { 
-            return value < MINIMAL_CLUES_COUNT ? MINIMAL_CLUES_COUNT : value;
-        }
-
-        private int SetValidClueCount_ThrowException(int value)
+        // pravděpodobně změnit na public a void
+        private int SetValidClueCount(int value)
         {
             if (value < MINIMAL_CLUES_COUNT)
                 throw new ArgumentException($"Clue count must be at least {MINIMAL_CLUES_COUNT}");
-            
+
             return value;
         }
 
-        /// <summary>
-        /// Vytvoří nová pravidla l.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="validValues"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static Rules Create(string name)
+        public static Rules Create(string name, ValidValues validValues)
         {
             // TODO: refaktorizace vytváření místo stringu enum
-            var validValues = Enumerable.Range(1, 9).ToList();
             
             switch (name)
             {
                 case
                     "Classic9x9Easy":
                     return new Rules("Classic9x9Easy", 9, 60, validValues);
+
                 case
                     "Classic9x9Medium":
                     return new Rules("Classic9x9Medium", 9, 45, validValues);
+
                 case
                     "Classic9x9Hard":
                     return new Rules("Classic9x9Hard", 9, 30, validValues);
+
                 default:
                     throw new ArgumentException("This rule name is not supported!");
             }
-
         }
     }
 }
