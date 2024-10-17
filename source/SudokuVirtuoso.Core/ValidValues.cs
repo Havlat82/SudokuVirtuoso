@@ -27,7 +27,7 @@ namespace SudokuVirtuoso.Core
         /// <returns>A read-only set of valid values.</returns>
         public HashSet<int> Get() => _values;
 
-        
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidValues"/> class.
@@ -39,7 +39,7 @@ namespace SudokuVirtuoso.Core
         {
             var newValues = new HashSet<int>(Enumerable.Range(min, max));
 
-            if (AreNotValid(newValues))
+            if (ValueValidator.AreNotValid(newValues))
                 throw new ArgumentException("The provided values are not valid for Sudoku.");
 
             _values = newValues;
@@ -52,14 +52,18 @@ namespace SudokuVirtuoso.Core
         /// <exception cref="ArgumentException">Thrown when values are null, empty, or invalid.</exception>
         public ValidValues(HashSet<int> newValues)
         {
-            if (AreNullOrEmpty(newValues))
+            if (ValueValidator.AreNullOrEmpty(newValues))
                 throw new ArgumentException("Values cannot be null or empty.", nameof(newValues));
 
-            if (AreNotValid(newValues))
+            if (ValueValidator.AreNotValid(newValues))
                 throw new ArgumentException("The provided values are not valid for Sudoku.");
 
             _values = newValues;
         }
+
+        #endregion
+
+        #region IEquatable<ValidValues> Members
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
@@ -96,6 +100,10 @@ namespace SudokuVirtuoso.Core
             return _values.GetHashCode();
         }
 
+        #endregion
+
+        #region Operators
+
         public static bool operator ==(ValidValues left, ValidValues right)
         {
             return left.Equals(right);
@@ -106,22 +114,7 @@ namespace SudokuVirtuoso.Core
             return !left.Equals(right);
         }
 
-        // tyhle dvě přesunu
-        public static bool AreNullOrEmpty(HashSet<int> values)
-        {
-            if (values == null || values.Count == 0)
-                return false;
-
-            return true;
-        }
-
-        public static bool AreNotValid(HashSet<int> values)
-        {
-            if (values.Contains(Rules.EMPTY_CELL_VALUE))
-                return true;
-
-            return false;
-        }
+        #endregion
 
         private readonly HashSet<int> _values;
     }
