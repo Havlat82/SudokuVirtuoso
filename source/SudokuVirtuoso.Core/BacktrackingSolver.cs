@@ -4,23 +4,37 @@ using System.Text;
 
 namespace SudokuVirtuoso.Core
 {
+    /// <summary>
+    /// Implements a backtracking algorithm to solve and generate Sudoku puzzles.
+    /// </summary>
     public class BacktrackingSolver : SudokuSolver
     {
         private ValueSetManager _setManager;
 
+        /// <summary>
+        /// Initializes a new instance of the BacktrackingSolver class.
+        /// </summary>
+        /// <param name="rules">The rules defining the Sudoku puzzle structure.</param>
         public BacktrackingSolver(Rules rules) : base(rules)
         {
             _setManager = new ValueSetManager(rules);
         }
 
-        // bude generovat třídu sudokusheet
-        public override int[,] GeneratePuzzle()
+        /// <summary>
+        /// Generates a new Sudoku puzzle.
+        /// </summary>
+        /// <returns>A 2D array representing the generated Sudoku puzzle.</returns>
+        public override int[,] GeneratePuzzle()// bude generovat třídu sudokusheet
         {
             var grid = CreateGridWithValidValues();
             // hide cells
             return grid;
         }
 
+        /// <summary>
+        /// Creates a fully filled Sudoku grid with valid values.
+        /// </summary>
+        /// <returns>A 2D array representing a fully filled Sudoku grid.</returns>
         private int[,] CreateGridWithValidValues()
         {
             var grid = new int[_rules.GridSize, _rules.GridSize];
@@ -30,8 +44,12 @@ namespace SudokuVirtuoso.Core
             return grid;
         }
 
-        // bude řešit třídu sudokusheet změnit v abstrakcích
-        public override bool SolvePuzzle(int[,] sudokuGrid)
+        /// <summary>
+        /// Solves the given Sudoku puzzle.
+        /// </summary>
+        /// <param name="sudokuGrid">The Sudoku puzzle to solve.</param>
+        /// <returns>True if the puzzle is solvable, false otherwise.</returns>
+        public override bool SolvePuzzle(int[,] sudokuGrid)// bude řešit třídu sudokusheet změnit v abstrakcích
         {
             if (!CanBeSolved(sudokuGrid))
                 return false;
@@ -39,6 +57,11 @@ namespace SudokuVirtuoso.Core
             return FillGrid(sudokuGrid);
         }
 
+        /// <summary>
+        /// Checks if the given Sudoku grid can be solved.
+        /// </summary>
+        /// <param name="grid">The Sudoku grid to check.</param>
+        /// <returns>True if the grid can be solved, false otherwise.</returns>
         public bool CanBeSolved(int[,] grid)
         {
             for (var row = 0; row < _rules.GridSize; row++)
@@ -57,9 +80,16 @@ namespace SudokuVirtuoso.Core
             return true;
         }
 
-        // předělat na iterativní způsob
+        /// <summary>
+        /// Fills the Sudoku grid using a backtracking algorithm.
+        /// </summary>
+        /// <param name="grid">The Sudoku grid to fill.</param>
+        /// <param name="newPuzzle">Indicates whether this is a new puzzle generation.</param>
+        /// <returns>True if the grid was successfully filled, false otherwise.</returns>
         private bool FillGrid(int[,] grid, bool newPuzzle = false)
         {
+            // TODO: předělat na iterativní způsob
+
             var numbers = _rules.ValidValues.Get();
 
             for (var row = 0; row < _rules.GridSize; row++)
@@ -95,6 +125,14 @@ namespace SudokuVirtuoso.Core
             return true;
         }
 
+        /// <summary>
+        /// Checks if a value can be written to a specific position in the Sudoku grid.
+        /// </summary>
+        /// <param name="value">The value to write.</param>
+        /// <param name="r">The row index.</param>
+        /// <param name="c">The column index.</param>
+        /// <param name="sgi">The square group index.</param>
+        /// <returns>True if the value can be written, false otherwise.</returns>
         private bool CanWriteValueToPosition(int value, int r, int c, int sgi)
         {
             var IsNotInRow = !_setManager.IsValueInRow(value, r);

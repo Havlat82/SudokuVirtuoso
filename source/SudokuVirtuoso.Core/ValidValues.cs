@@ -104,11 +104,23 @@ namespace SudokuVirtuoso.Core
 
         #region Operators
 
+        /// <summary>
+        /// Determines whether two ValidValues instances are equal.
+        /// </summary>
+        /// <param name="left">The left ValidValues instance to compare.</param>
+        /// <param name="right">The right ValidValues instance to compare.</param>
+        /// <returns>True if the instances are equal, false otherwise.</returns>
         public static bool operator ==(ValidValues left, ValidValues right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>
+        /// Determines whether two ValidValues instances are not equal.
+        /// </summary>
+        /// <param name="left">The left ValidValues instance to compare.</param>
+        /// <param name="right">The right ValidValues instance to compare.</param>
+        /// <returns>True if the instances are not equal, false otherwise.</returns>
         public static bool operator !=(ValidValues left, ValidValues right)
         {
             return !left.Equals(right);

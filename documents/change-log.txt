@@ -275,3 +275,24 @@ ValueSetMananager
 Minor changes:
 - Remove unused field _random in SudokuSolver
 - Add some todo comments
+
+==================================================================
+
+0013: #Přidání XML documentation
+
+==================================================================
+
+0014: #Přidání třídy ValueSetMananager
+
+Zapouzdřuje zapsanné hodnoty v řádku, sloupci a čtverci
+Clean / Refactor třídy BacktrackingSolver
+
+- Create ValueSetMananager zapouzdřuje množiny zadaných hodnot
+- Přesun relevantního kódu z třídy BacktrackingSolver do nové třídy 
+ValueSetMananager
+- Update volání relevantních metod ve třídě BacktrackingSolver
+- Add XML documentation to ValueShuffler class for better code clarity
+
+Minor changes:
+- Remove unused field _random in SudokuSolver
+- Add some todo comments
