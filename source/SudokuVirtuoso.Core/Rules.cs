@@ -38,7 +38,8 @@ namespace SudokuVirtuoso.Core
             ValidValues = validValues;
         }
 
-        // pravděpodobně změnit na public a void
+        // pravděpodobně změnit na public a void, možná to změnim uplně..
+        // validace parametrů a tohle  nebude potřeba tady budu volat value validator
         private int SetValidClueCount(int value)
         {
             if (value < MINIMAL_CLUES_COUNT)
@@ -50,6 +51,9 @@ namespace SudokuVirtuoso.Core
         public static Rules Create(string name, ValidValues validValues)
         {
             // TODO: refaktorizace vytváření místo stringu enum
+            // todo: mebudude tam retrurn ale volání privátních statických
+            // metody, která ty pravidla vytvoří
+            // chci se zbavit všech magic numbers..
             
             switch (name)
             {

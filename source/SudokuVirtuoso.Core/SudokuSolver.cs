@@ -10,7 +10,6 @@ namespace SudokuVirtuoso.Core
 
         public abstract bool SolvePuzzle(int[,] sudokuGrid);
 
-        protected Random _random = new Random();
         protected Rules _rules;
 
         protected SudokuSolver(Rules rules)
