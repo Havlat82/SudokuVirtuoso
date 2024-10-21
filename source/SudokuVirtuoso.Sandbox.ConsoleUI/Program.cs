@@ -50,50 +50,50 @@ namespace SudokuVirtuoso.ConsoleUI
             Console.ReadLine();
         }
 
-        private bool SolveIterative(int[,] sheet, Rules rules)
-        {
-            var stack = new Stack<Position>();
-            var currentPosition = new Position(0, 0);
+        //private bool SolveIterative(int[,] sheet, Rules rules)
+        //{
+        //    //var stack = new Stack<Position>();
+        //    //var currentPosition = new Position(0, 0);
 
-            while (true)
-            {
-                if (currentPosition.Row == rules.GridSize)
-                {
-                    return true; // Puzzle solved
-                }
+        //    while (true)
+        //    {
+        //        if (currentPosition.Row == rules.GridSize)
+        //        {
+        //            return true; // Puzzle solved
+        //        }
 
-                if (sheet[currentPosition.Row, currentPosition.Column] != Rules.EMPTY_CELL_VALUE)
-                {
-                    //currentPosition = GetNextPosition(currentPosition);
-                    continue;
-                }
+        //        if (sheet[currentPosition.Row, currentPosition.Column] != Rules.EMPTY_CELL_VALUE)
+        //        {
+        //            //currentPosition = GetNextPosition(currentPosition);
+        //            continue;
+        //        }
 
-                bool foundValidNumber = false;
-                int startNum = sheet[currentPosition.Row, currentPosition.Column] + 1;
+        //        bool foundValidNumber = false;
+        //        int startNum = sheet[currentPosition.Row, currentPosition.Column] + 1;
 
-                //for (int num = startNum; num <= Rules.MAX_VALUE; num++)
-                //{
-                //    if (SudokuGrid.IsPositionValid(sheet, currentPosition, num))
-                //    {
-                //        sheet[currentPosition.Row, currentPosition.Column] = num;
+        //        //for (int num = startNum; num <= Rules.MAX_VALUE; num++)
+        //        //{
+        //        //    if (SudokuGrid.IsPositionValid(sheet, currentPosition, num))
+        //        //    {
+        //        //        sheet[currentPosition.Row, currentPosition.Column] = num;
 
-                //        stack.Push(currentPosition);
-                //        currentPosition = GetNextPosition(currentPosition, rules);
-                //        foundValidNumber = true;
-                //        break;
-                //    }
-                //}
+        //        //        stack.Push(currentPosition);
+        //        //        currentPosition = GetNextPosition(currentPosition, rules);
+        //        //        foundValidNumber = true;
+        //        //        break;
+        //        //    }
+        //        //}
 
-                if (!foundValidNumber)
-                {
-                    if (stack.Count == 0)
-                    {
-                        return false;
-                    }
-                    sheet[currentPosition.Row, currentPosition.Column] = Rules.EMPTY_CELL_VALUE;
-                    currentPosition = stack.Pop();
-                }
-            }
-        }
+        //        if (!foundValidNumber)
+        //        {
+        //            if (stack.Count == 0)
+        //            {
+        //                return false;
+        //            }
+        //            sheet[currentPosition.Row, currentPosition.Column] = Rules.EMPTY_CELL_VALUE;
+        //            currentPosition = stack.Pop();
+        //        }
+        //    }
+        //}
     }
 }
