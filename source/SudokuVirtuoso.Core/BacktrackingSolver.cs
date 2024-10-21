@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SudokuVirtuoso.Core
+﻿namespace SudokuVirtuoso.Core
 {
     /// <summary>
     /// Implements a backtracking algorithm to solve and generate Sudoku puzzles.
@@ -68,6 +64,7 @@ namespace SudokuVirtuoso.Core
                 for (var col = 0; col < _rules.GridSize; col++)
                     if (grid[row, col] != Rules.EMPTY_CELL_VALUE)
                     {
+                        // get the square group index
                         var sgi = ((row / _rules.SquareSize) * _rules.SquareSize) + (col / _rules.SquareSize);
                         var value = grid[row, col];
 
@@ -97,6 +94,7 @@ namespace SudokuVirtuoso.Core
                 {
                     if (grid[row, col] == Rules.EMPTY_CELL_VALUE)
                     {
+                        // get the square group index
                         var sgi = ((row / _rules.SquareSize) * _rules.SquareSize) + (col / _rules.SquareSize);
 
                         if (newPuzzle) // pravděpodobně změnim název
