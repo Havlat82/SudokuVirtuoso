@@ -15,7 +15,7 @@ namespace SudokuVirtuoso.Core
         /// Gets a new HashSet with the valid values in random order.
         /// </summary>
         /// <returns>A new HashSet with randomized valid values.</returns>
-        public static HashSet<int> Shuffle(HashSet<int> values)
+        public static HashSet<int> GetShuffledValues(HashSet<int> values)
         {
             // Create a new array to avoid modifying the original set
             var valueArray = values.ToArray();
@@ -35,13 +35,6 @@ namespace SudokuVirtuoso.Core
             return new HashSet<int>(valueArray);
         }
 
-        /// <summary>
-        /// Generates a random index within the range of the given array index.
-        /// </summary>
-        /// <param name="random">The cryptographic random number generator.</param>
-        /// <param name="randomBytes">The byte array to store random bytes.</param>
-        /// <param name="index">The upper bound of the random index to generate.</param>
-        /// <returns>A random index between 0 and the given index, inclusive.</returns>
         private static int GetRandomIndexInArray(RNGCryptoServiceProvider random, byte[] randomBytes, int index)
         {
             random.GetBytes(randomBytes);
@@ -49,12 +42,6 @@ namespace SudokuVirtuoso.Core
             return BitConverter.ToInt32(randomBytes, 0) % (index + 1);
         }
 
-        /// <summary>
-        /// Swaps two values in the given integer array.
-        /// </summary>
-        /// <param name="intArray">The array in which to swap values.</param>
-        /// <param name="index1">The index of the first value to swap.</param>
-        /// <param name="index2">The index of the second value to swap.</param>
         private static void SwapValuesInArray(int[] intArray, int index1, int index2)
         {
             int temp = intArray[index1];

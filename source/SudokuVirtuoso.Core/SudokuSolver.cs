@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SudokuVirtuoso.Core
+﻿namespace SudokuVirtuoso.Core
 {
     /// <summary>
     /// Provides an abstract base class for Sudoku solvers.
@@ -21,19 +17,32 @@ namespace SudokuVirtuoso.Core
         /// <param name="sudokuGrid">The Sudoku puzzle to solve.</param>
         /// <returns>True if the puzzle is solvable, false otherwise.</returns>
         public abstract bool SolvePuzzle(int[,] sudokuGrid);
-        
-        /// <summary>
-        /// The rules defining the Sudoku puzzle structure.
-        /// </summary>
-        protected Rules _rules;
 
         /// <summary>
         /// Initializes a new instance of the SudokuSolver class.
         /// </summary>
-        /// <param name="rules">The rules defining the Sudoku puzzle structure.</param>
-        protected SudokuSolver(Rules rules)
+        /// <param name="puzzleType">The puzzle type that defines the rules for the sudoku puzzle.</param>
+        protected SudokuSolver(PuzzleType puzzleType)
         {
-            _rules = rules;
+            SetRules(puzzleType);
+        }
+
+        private void SetRules(PuzzleType puzzleType)
+        {
+            switch (puzzleType)
+            {
+                case PuzzleType.Classic9x9Easy:
+                    Rules.TrySet(3, 60, new ValidValues(1, 9));
+                    break;
+
+                case PuzzleType.Classic9x9Medium:
+                    Rules.TrySet(3, 45, new ValidValues(1, 9));
+                    break;
+
+                case PuzzleType.Classic9x9Hard:
+                    Rules.TrySet(3, 30, new ValidValues(1, 9));
+                    break;
+            }
         }
     }
 }

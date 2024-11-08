@@ -12,9 +12,7 @@ namespace SudokuVirtuoso.ConsoleUI
     {
         private static void Main(string[] args)
         {
-            var rules = Rules.Create("Classic9x9Easy", new ValidValues(1, 9));
-
-            var solver = new BacktrackingSolver(rules);
+            var solver = new BacktrackingSolver(PuzzleType.Classic9x9Easy);
 
             int[,] puzzle = {
                 {5,3,0,0,7,0,0,0,0},
@@ -46,6 +44,7 @@ namespace SudokuVirtuoso.ConsoleUI
             // Act
             bool solved = solver.SolvePuzzle(puzzle);
             SudokuHelper.PrintGrid(puzzle);
+            Console.WriteLine(solved);
 
             Console.ReadLine();
         }

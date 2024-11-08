@@ -23,9 +23,7 @@ namespace SudokuVirtuoso.WinFormsUI
 
         private void InitPuzzle()
         {
-            var validValues = new ValidValues(1, 9);
-            var rules = Rules.Create("Classic9x9Easy", validValues);
-            _sudokuSolver = new BacktrackingSolver(rules);
+            _sudokuSolver = new BacktrackingSolver(PuzzleType.Classic9x9Easy);
         }
     }
 }

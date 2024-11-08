@@ -6,20 +6,41 @@ using System.Text;
 namespace SudokuVirtuoso.Core
 {
     /// <summary>
-    /// Provides methods for validating Sudoku grids.
+    /// Provides methods for validating sudoku grids.
     /// </summary>
     public static class GridValidator
     {
         /// <summary>
-        /// Validates whether the given grid is valid according to the specified rules.
+        /// Checks if the size of inner grid of the sudoku puzzle is less than the minimum size.
         /// </summary>
-        /// <param name="grid">The Sudoku grid to validate.</param>
-        /// <param name="rules">The rules to apply for validation.</param>
-        /// <returns>True if the grid is valid, false otherwise.</returns>
-        public static bool IsGridValid(int[,] grid, Rules rules)
+        /// <param name="size">The size of inner grid to check.</param>
+        /// <returns>True if the <paramref name="size"/> is less than the minimum, false otherwise.</returns>
+        public static bool IsSubGridSizeInvalid(int size)
         {
-            return HasValidDimensions(grid, rules) && HasValidValues(grid, rules);
+            return size < Constants.MIN_SUBGRID_SIZE;
         }
+
+        /// <summary>
+        /// Checks if the number of clues (displayed values) ​​is less than the minimum number of clues.
+        /// </summary>
+        /// <param name="count">The number of clues.</param>
+        /// <returns>True if the <paramref name="count"/> is less than the minimum, false otherwise.</returns>
+        public static bool IsClueCountInvalid(int count)
+        {
+            return count < Constants.MIN_CLUE_COUNT;
+        }
+
+        /// <summary>
+        /// Checks if the given grid is valid according to the specified rules.
+        /// </summary>
+        /// <param name="grid">The sudoku grid to validate.</param>
+        /// <returns>True if the grid is valid, false otherwise.</returns>
+        public static bool IsGridValid(int[,] grid)
+        {
+            return HasValidDimensions(grid) && HasValidValues(grid);
+        }
+
+        
 
         /// <summary>
         /// Checks if the grid has valid dimensions according to the specified rules.
@@ -27,36 +48,24 @@ namespace SudokuVirtuoso.Core
         /// <param name="grid">The Sudoku grid to check.</param>
         /// <param name="rules">The rules specifying the expected grid size.</param>
         /// <returns>True if the grid has valid dimensions, false otherwise.</returns>
-        private static bool HasValidDimensions(int[,] grid, Rules rules)
+        private static bool HasValidDimensions(int[,] grid)
         {
             return grid != null // object exists & it is 2D array with valid dimensions
-                && grid.GetLength(0) == rules.GridSize
-                && grid.GetLength(1) == rules.GridSize;
+                && grid.GetLength(0) == Rules.GridSize
+                && grid.GetLength(1) == Rules.GridSize;
         }
 
-        /// <summary>
-        /// Checks if all values in the grid are valid according to the specified rules.
-        /// </summary>
-        /// <param name="grid">The Sudoku grid to check.</param>
-        /// <param name="rules">The rules specifying the valid values.</param>
-        /// <returns>True if all values in the grid are valid, false otherwise.</returns>
-        private static bool HasValidValues(int[,] grid, Rules rules)
+        private static bool HasValidValues(int[,] grid)
         {
-            return grid.Cast<int>().All(cellValue => IsValidValue(cellValue, rules));
+            return grid.Cast<int>().All(cellValue => IsValidValue(cellValue));
         }
 
-        /// <summary>
-        /// Determines if a single value is valid according to the specified rules.
-        /// </summary>
-        /// <param name="value">The value to check.</param>
-        /// <param name="rules">The rules specifying the valid value range.</param>
-        /// <returns>True if the value is valid, false otherwise.</returns>
-        private static bool IsValidValue(int value, Rules rules)
+        private static bool IsValidValue(int value)
         {
-            var min = rules.ValidValues.Min;
-            var max = rules.ValidValues.Max;
+            var min = Rules.ValidValues.Min;
+            var max = Rules.ValidValues.Max;
 
-            return value == Rules.EMPTY_CELL_VALUE || (value >= min && value <= max);
+            return value == Constants.EMPTY_CELL_VALUE || (value >= min && value <= max);
         }
     }
 }

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Linq;
-using System.Collections;
 
 namespace SudokuVirtuoso.Core
 {
     /// <summary>
-    /// Represents a set of valid values for a Sudoku puzzle.
+    /// Represents a set of valid values for a sudoku puzzle.
     /// </summary>
     public sealed class ValidValues : IEquatable<ValidValues>
     {
@@ -37,12 +35,7 @@ namespace SudokuVirtuoso.Core
         /// <exception cref="ArgumentException">Thrown when values in range between min and max are invalid.</exception>
         public ValidValues(int min, int max)
         {
-            var newValues = new HashSet<int>(Enumerable.Range(min, max));
-
-            if (ValueValidator.AreNotValid(newValues))
-                throw new ArgumentException("The provided values are not valid for Sudoku.");
-
-            _values = newValues;
+            _values = new HashSet<int>(Enumerable.Range(min, max));
         }
 
         /// <summary>
@@ -52,16 +45,10 @@ namespace SudokuVirtuoso.Core
         /// <exception cref="ArgumentException">Thrown when values are null, empty, or invalid.</exception>
         public ValidValues(HashSet<int> newValues)
         {
-            if (ValueValidator.AreNullOrEmpty(newValues))
-                throw new ArgumentException("Values cannot be null or empty.", nameof(newValues));
-
-            if (ValueValidator.AreNotValid(newValues))
-                throw new ArgumentException("The provided values are not valid for Sudoku.");
-
             _values = newValues;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region IEquatable<ValidValues> Members
 
@@ -100,7 +87,7 @@ namespace SudokuVirtuoso.Core
             return _values.GetHashCode();
         }
 
-        #endregion
+        #endregion IEquatable<ValidValues> Members
 
         #region Operators
 
@@ -126,7 +113,7 @@ namespace SudokuVirtuoso.Core
             return !left.Equals(right);
         }
 
-        #endregion
+        #endregion Operators
 
         private readonly HashSet<int> _values;
     }
